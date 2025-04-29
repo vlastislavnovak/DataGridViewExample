@@ -53,6 +53,7 @@
             tblUsers.RowHeadersWidth = 51;
             tblUsers.Size = new Size(781, 453);
             tblUsers.TabIndex = 0;
+            tblUsers.CellValueChanged += tblUsers_CellValueChanged;
             tblUsers.DataError += tblUsers_DataError;
             // 
             // btnSave

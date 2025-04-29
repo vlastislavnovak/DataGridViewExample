@@ -127,5 +127,10 @@ namespace Forms
         {
             return (!string.IsNullOrWhiteSpace(user.firstName) && !string.IsNullOrWhiteSpace(user.lastName));
         }
+
+        private void tblUsers_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            tblUsers.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
+        }
     }
 }
