@@ -170,5 +170,27 @@ namespace Forms
             filteredUsers = new BindingList<User>(results);
             tblUsers.DataSource = filteredUsers;
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (context.ChangeTracker.HasChanges())
+            {
+                var result = MessageBox.Show(
+                    "Máte neuložené zmìny. Chcete je uložit pøed ukonèením?",
+                    "Upozornìní",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    context.SaveChanges();
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
     }
 }

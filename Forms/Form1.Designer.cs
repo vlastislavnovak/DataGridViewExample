@@ -185,6 +185,7 @@
             Controls.Add(tblUsers);
             Name = "Form1";
             Text = "Form1";
+            FormClosing += Form1_FormClosing;
             FormClosed += Form1_FormClosed;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)tblUsers).EndInit();
