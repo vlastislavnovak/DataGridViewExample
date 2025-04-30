@@ -48,10 +48,19 @@ namespace Forms
 
             context.ChangeTracker.AutoDetectChangesEnabled = true;
 
-            context.Users.Load();
-            users = context.Users.Local.ToBindingList();
+            try
+            {
+                context.Users.Load();
 
-            tblUsers.DataSource = users;
+                users = context.Users.Local.ToBindingList();
+
+                tblUsers.DataSource = users;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nepodaøilo se pøipojit k databázi.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
