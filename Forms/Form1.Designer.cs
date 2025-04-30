@@ -39,6 +39,7 @@
             groupBox1 = new GroupBox();
             btnAdd = new Button();
             btnDelete = new Button();
+            txtSearch = new TextBox();
             ((System.ComponentModel.ISupportInitialize)tblUsers).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -47,21 +48,20 @@
             // 
             tblUsers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tblUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tblUsers.Location = new Point(229, 15);
-            tblUsers.Margin = new Padding(3, 4, 3, 4);
+            tblUsers.Location = new Point(200, 11);
             tblUsers.Name = "tblUsers";
             tblUsers.RowHeadersWidth = 51;
-            tblUsers.Size = new Size(781, 453);
+            tblUsers.Size = new Size(682, 309);
             tblUsers.TabIndex = 0;
             tblUsers.CellValueChanged += tblUsers_CellValueChanged;
             tblUsers.DataError += tblUsers_DataError;
+            tblUsers.UserDeletingRow += tblUsers_UserDeletingRow;
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(135, 292);
-            btnSave.Margin = new Padding(3, 4, 3, 4);
+            btnSave.Location = new Point(807, 326);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(86, 31);
+            btnSave.Size = new Size(75, 23);
             btnSave.TabIndex = 1;
             btnSave.Text = "Uložit";
             btnSave.UseVisualStyleBackColor = true;
@@ -69,43 +69,47 @@
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(14, 15);
+            txtFirstName.Location = new Point(12, 11);
+            txtFirstName.Margin = new Padding(3, 2, 3, 2);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.PlaceholderText = "Jméno";
-            txtFirstName.Size = new Size(206, 27);
+            txtFirstName.Size = new Size(181, 23);
             txtFirstName.TabIndex = 3;
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(14, 51);
+            txtLastName.Location = new Point(12, 38);
+            txtLastName.Margin = new Padding(3, 2, 3, 2);
             txtLastName.Name = "txtLastName";
             txtLastName.PlaceholderText = "Příjmení";
-            txtLastName.Size = new Size(206, 27);
+            txtLastName.Size = new Size(181, 23);
             txtLastName.TabIndex = 5;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(14, 97);
+            label3.Location = new Point(12, 73);
             label3.Name = "label3";
-            label3.Size = new Size(115, 20);
+            label3.Size = new Size(91, 15);
             label3.TabIndex = 6;
             label3.Text = "Datum narození";
             // 
             // dtpBirthDate
             // 
-            dtpBirthDate.Location = new Point(14, 120);
+            dtpBirthDate.Location = new Point(12, 90);
+            dtpBirthDate.Margin = new Padding(3, 2, 3, 2);
             dtpBirthDate.Name = "dtpBirthDate";
-            dtpBirthDate.Size = new Size(206, 27);
+            dtpBirthDate.Size = new Size(181, 23);
             dtpBirthDate.TabIndex = 7;
             // 
             // rbnMale
             // 
             rbnMale.AutoSize = true;
             rbnMale.Checked = true;
-            rbnMale.Location = new Point(31, 27);
+            rbnMale.Location = new Point(27, 20);
+            rbnMale.Margin = new Padding(3, 2, 3, 2);
             rbnMale.Name = "rbnMale";
-            rbnMale.Size = new Size(58, 24);
+            rbnMale.Size = new Size(48, 19);
             rbnMale.TabIndex = 9;
             rbnMale.TabStop = true;
             rbnMale.Text = "Muž";
@@ -114,9 +118,10 @@
             // rbnFemale
             // 
             rbnFemale.AutoSize = true;
-            rbnFemale.Location = new Point(93, 27);
+            rbnFemale.Location = new Point(81, 20);
+            rbnFemale.Margin = new Padding(3, 2, 3, 2);
             rbnFemale.Name = "rbnFemale";
-            rbnFemale.Size = new Size(63, 24);
+            rbnFemale.Size = new Size(51, 19);
             rbnFemale.TabIndex = 10;
             rbnFemale.Text = "Žena";
             rbnFemale.UseVisualStyleBackColor = true;
@@ -125,19 +130,20 @@
             // 
             groupBox1.Controls.Add(rbnMale);
             groupBox1.Controls.Add(rbnFemale);
-            groupBox1.Location = new Point(14, 168);
+            groupBox1.Location = new Point(12, 126);
+            groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(207, 64);
+            groupBox1.Padding = new Padding(3, 2, 3, 2);
+            groupBox1.Size = new Size(181, 48);
             groupBox1.TabIndex = 11;
             groupBox1.TabStop = false;
             groupBox1.Text = "Pohlaví";
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(14, 253);
-            btnAdd.Margin = new Padding(3, 4, 3, 4);
+            btnAdd.Location = new Point(119, 179);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(86, 31);
+            btnAdd.Size = new Size(75, 23);
             btnAdd.TabIndex = 12;
             btnAdd.Text = "Přidat";
             btnAdd.UseVisualStyleBackColor = true;
@@ -145,20 +151,29 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(135, 253);
-            btnDelete.Margin = new Padding(3, 4, 3, 4);
+            btnDelete.Location = new Point(726, 326);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(86, 31);
+            btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 14;
             btnDelete.Text = "Smazat";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
+            // txtSearch
+            // 
+            txtSearch.Location = new Point(200, 326);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Hledat";
+            txtSearch.Size = new Size(181, 23);
+            txtSearch.TabIndex = 15;
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1022, 481);
+            ClientSize = new Size(894, 361);
+            Controls.Add(txtSearch);
             Controls.Add(btnDelete);
             Controls.Add(btnAdd);
             Controls.Add(groupBox1);
@@ -168,7 +183,6 @@
             Controls.Add(txtFirstName);
             Controls.Add(btnSave);
             Controls.Add(tblUsers);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Form1";
             FormClosed += Form1_FormClosed;
@@ -193,5 +207,6 @@
         private GroupBox groupBox1;
         private Button btnAdd;
         private Button btnDelete;
+        private TextBox txtSearch;
     }
 }

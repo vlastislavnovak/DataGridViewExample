@@ -7,7 +7,8 @@ namespace Forms
     public partial class Form1 : Form
     {
         private AppDbContext context;
-        private BindingList<User> users;
+        private BindingList<User> allUsers;
+        private BindingList<User> filteredUsers;
 
         public Form1()
         {
@@ -52,9 +53,11 @@ namespace Forms
             {
                 context.Users.Load();
 
-                users = context.Users.Local.ToBindingList();
+                allUsers = context.Users.Local.ToBindingList();
 
-                tblUsers.DataSource = users;
+                filteredUsers = new BindingList<User>(allUsers.ToList());
+
+                tblUsers.DataSource = filteredUsers;
             }
             catch (Exception ex)
             {
@@ -83,7 +86,8 @@ namespace Forms
 
             if (isUserValid(user))
             {
-                users.Add(user);
+                allUsers.Add(user);
+                filteredUsers.Add(user);
                 resetForm();
             }
         }
@@ -100,7 +104,19 @@ namespace Forms
         {
             foreach (DataGridViewRow row in tblUsers.SelectedRows)
             {
-                users.Remove((User)row.DataBoundItem);
+                if (row.DataBoundItem is User user)
+                {
+                    allUsers.Remove(user);
+                    filteredUsers.Remove(user);
+                }
+            }
+        }
+
+        private void tblUsers_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            if (e.Row.DataBoundItem is User user)
+            {
+                allUsers.Remove(user);
             }
         }
 
@@ -121,7 +137,7 @@ namespace Forms
 
         private bool areUsersValid()
         {
-            foreach (User user in users)
+            foreach (User user in allUsers)
             {
                 if (!isUserValid(user))
                 {
@@ -140,6 +156,19 @@ namespace Forms
         private void tblUsers_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             tblUsers.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string lowerSearch = txtSearch.Text.ToLower();
+
+            List<User> results = allUsers
+                .Where(u => (u.firstName?.ToLower().Contains(lowerSearch) ?? false) ||
+                            (u.lastName?.ToLower().Contains(lowerSearch) ?? false))
+                .ToList();
+
+            filteredUsers = new BindingList<User>(results);
+            tblUsers.DataSource = filteredUsers;
         }
     }
 }
