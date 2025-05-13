@@ -1,6 +1,6 @@
 ﻿namespace Forms
 {
-    partial class Form1
+    partial class DataGridViewExample
     {
         /// <summary>
         ///  Required designer variable.
@@ -168,7 +168,7 @@
             txtSearch.TabIndex = 15;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
-            // Form1
+            // DataGridViewExample
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -183,8 +183,8 @@
             Controls.Add(txtFirstName);
             Controls.Add(btnSave);
             Controls.Add(tblUsers);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "DataGridViewExample";
+            Text = "DataGridView";
             FormClosing += Form1_FormClosing;
             FormClosed += Form1_FormClosed;
             Load += Form1_Load;
