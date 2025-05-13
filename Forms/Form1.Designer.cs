@@ -184,7 +184,7 @@
             Controls.Add(btnSave);
             Controls.Add(tblUsers);
             Name = "Form1";
-            Text = "Form1";
+            Text = "DataGridViewExample";
             FormClosing += Form1_FormClosing;
             FormClosed += Form1_FormClosed;
             Load += Form1_Load;
