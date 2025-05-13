@@ -6,26 +6,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Forms
-{
-    internal class User {
-        [Key]
-        public Guid id { get; set; }
+namespace Forms;
 
-        [StringLength(255)]
-        public required string firstName { get; set; }
+internal class User {
+    [Key]
+    public Guid id { get; set; }
 
-        [StringLength(255)] 
-        public required string lastName { get; set; }
+    [StringLength(255)]
+    public required string firstName { get; set; }
 
-        public DateOnly? birthDate { get; set; }
+    [StringLength(255)] 
+    public required string lastName { get; set; }
 
-        public char? gender { get; set; } = 'M';
+    public DateOnly? birthDate { get; set; }
 
-        public DateTime createdAt { get; set; } = DateTime.Now;
+    public char? gender { get; set; } = 'M';
 
-        public override string ToString() {
-            return $"User: {firstName} {lastName}; Birthdate: {birthDate:yyyy-MM-dd}; Gender: {gender}";
-        }
+    public DateTime createdAt { get; set; } = DateTime.Now;
+
+    public override string ToString() {
+        return $"User: {firstName} {lastName}; Birthdate: {birthDate:yyyy-MM-dd}; Gender: {gender}";
     }
 }
