@@ -33,11 +33,22 @@ A simple Windows Forms application for managing a list of users with basic CRUD 
 
 In AppDbContext.cs, configure connection to SQL Server.
 
-**4. Apply migrations (optional)**
+**4. Install dependencies**
 
-If you use EF migrations, apply them with:
+If needed, restore NuGet packages:
+   ```bash
+   dotnet restore
+   ```
+   You may need to install EF Core tools:
+   ```bash
+   dotnet tool install dotnet-ef --create-manifest-if-needed
+   ```
+   
+**5. Apply migrations (optional)**
+
+Ensure your database is created and migrations are applied:
 
 ```bash
 dotnet ef database update
 ```
-**5. Run the application**
+**6. Run the application**
