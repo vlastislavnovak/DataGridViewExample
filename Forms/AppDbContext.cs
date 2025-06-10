@@ -13,9 +13,12 @@ namespace Forms
         public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+
+            var connectionString = "server=localhost;database=test;user=root;password=";
+
             optionsBuilder.UseMySql(
-                "server=localhost;database=test;user=root;password=",
-                new MariaDbServerVersion(new Version(10, 4, 32)))
+                connectionString,
+                ServerVersion.AutoDetect(connectionString))
                 .LogTo(msg => {System.Diagnostics.Debug.WriteLine(msg);}, LogLevel.Information);
         }
     }
